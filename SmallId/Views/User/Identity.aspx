@@ -2,10 +2,6 @@
 
 <%@ Register Assembly="DotNetOpenAuth.OpenId.Provider.UI" Namespace="DotNetOpenAuth.OpenId.Provider"
 	TagPrefix="op" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%=Html.Encode(ViewData["username"] ?? string.Empty)%>
-	Identity page
-</asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
 	<op:IdentityEndpoint ID="IdentityEndpoint11" runat="server" ProviderEndpointUrl="~/OpenId/Provider"
 		ProviderVersion="V11" />

@@ -2,7 +2,8 @@
 <%
     if (Request.IsAuthenticated) {
 %>
-        Welcome <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
+        Welcome <b><%= Html.Encode(Page.User.Identity.Name) %></b>
+        (<%= SmallId.Code.Util.GetClaimedIdentifierForUser(Page.User.Identity.Name) %>)!
         [ <%= Html.ActionLink("Log Off", "LogOff", "Account") %> ]
 <%
     }

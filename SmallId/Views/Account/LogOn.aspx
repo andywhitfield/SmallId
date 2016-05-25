@@ -1,13 +1,22 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
-<asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Log On
+<asp:Content ID="scriptHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            var usernameEl = $('input[name="username"]');
+            if (usernameEl.val() != '') {
+                $('input[name="password"]').focus();
+            } else {
+                usernameEl.focus();
+            }
+        });
+    </script>
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Log On</h2>
     <p>
-        Please enter your username and password. 
+        Please enter your username and password.
         <%--<%= Html.ActionLink("Register", "Register") %> if you don't have an account.--%>
     </p>
     <%= Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.") %>
@@ -18,7 +27,7 @@
                 <legend>Account Information</legend>
                 <p>
                     <label for="username">Username:</label>
-                    <%= Html.TextBox("username") %>
+                    <%= Html.TextBox("username", TempData["username"]) %>
                     <%= Html.ValidationMessage("username") %>
                 </p>
                 <p>
@@ -35,14 +44,4 @@
             </fieldset>
         </div>
     <% } %>
-
-	<p>Credentials to try (each with their own OpenID)</p>
-	<table>
-		<tr><td>Username</td><td>Password</td></tr>
-		<tr><td>bob</td><td>test</td></tr>
-		<tr><td>bob1</td><td>test</td></tr>
-		<tr><td>bob2</td><td>test</td></tr>
-		<tr><td>bob3</td><td>test</td></tr>
-		<tr><td>bob4</td><td>test</td></tr>
-	</table>
 </asp:Content>

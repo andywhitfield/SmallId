@@ -1,20 +1,13 @@
-﻿namespace SmallId
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
+﻿using DotNetOpenAuth.OpenId.Provider.Behaviors;
+using SmallId.Code;
+using System;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
-    /// <summary>
-    /// The global MVC application state and manager.
-    /// </summary>
-    /// <remarks>
-    /// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    /// visit http://go.microsoft.com/?LinkId=9394801
-    /// </remarks>
-    public class MvcApplication : System.Web.HttpApplication
+namespace SmallId
+{
+    public class MvcApplication : HttpApplication
     {
         private static object behaviorInitializationSyncObject = new object();
 
@@ -31,9 +24,9 @@
                 "anon",
                 new { controller = "User", action = "Identity", id = string.Empty, anon = true });
             routes.MapRoute(
-                "Default",                                              // Route name
-                "{controller}/{action}/{id}",                           // URL with parameters
-                new { controller = "Home", action = "Index", id = string.Empty }); // Parameter defaults
+                "Default",
+                "{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = string.Empty });
         }
 
         protected void Application_Start()
@@ -48,15 +41,17 @@
 
         private static void InitializeBehaviors()
         {
-            if (DotNetOpenAuth.OpenId.Provider.Behaviors.PpidGeneration.PpidIdentifierProvider == null)
+            if (PpidGeneration.PpidIdentifierProvider != null)
             {
-                lock (behaviorInitializationSyncObject)
+                return;
+            }
+
+            lock (behaviorInitializationSyncObject)
+            {
+                if (PpidGeneration.PpidIdentifierProvider == null)
                 {
-                    if (DotNetOpenAuth.OpenId.Provider.Behaviors.PpidGeneration.PpidIdentifierProvider == null)
-                    {
-                        DotNetOpenAuth.OpenId.Provider.Behaviors.PpidGeneration.PpidIdentifierProvider = new Code.AnonymousIdentifierProvider();
-                        DotNetOpenAuth.OpenId.Provider.Behaviors.GsaIcamProfile.PpidIdentifierProvider = new Code.AnonymousIdentifierProvider();
-                    }
+                    PpidGeneration.PpidIdentifierProvider = new AnonymousIdentifierProvider();
+                    GsaIcamProfile.PpidIdentifierProvider = new AnonymousIdentifierProvider();
                 }
             }
         }

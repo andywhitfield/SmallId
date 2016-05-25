@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 	<h2>
-		Logging in somewhere?
+		Continue logging in?
 	</h2>
 	<p>
 		Are you trying to log into
@@ -13,8 +13,8 @@
 	<%= Html.AntiForgeryToken() %>
 	<%= Html.Hidden("confirmed", "false") %>
 	<div style="display: none" id="responseButtonsDiv">
-		<input type="submit" value="yes" onclick="document.getElementsByName('confirmed')[0].value = 'true'; return true;" />
-		<input type="submit" value="no" />
+		<input type="submit" value="Yes" onclick="document.getElementsByName('confirmed')[0].value = 'true'; return true;" />
+		<input type="submit" value="No" />
 	</div>
 	<div id="javascriptDisabled">
 		<b>Javascript appears to be disabled in your browser. </b>This page requires Javascript

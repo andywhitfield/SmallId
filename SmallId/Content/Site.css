@@ -47,6 +47,17 @@ h1, h2, h3, h4, h5, h6
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#title a
+{
+    font-size: 2em;
+    text-decoration: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
 h1
 {
     font-size: 2em;

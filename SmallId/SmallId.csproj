@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -221,12 +222,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\AccountMembershipService.cs" />
     <Compile Include="Code\AnonymousIdentifierProvider.cs" />
     <Compile Include="Code\FormsAuthenticationService.cs" />
     <Compile Include="Code\IFormsAuthentication.cs" />
     <Compile Include="Code\IMembershipService.cs" />
-    <Compile Include="Code\ReadOnlyXmlMembershipProvider.cs" />
+    <Compile Include="Code\RegistryMembershipService.cs" />
     <Compile Include="Code\Util.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -239,13 +239,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Users.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
