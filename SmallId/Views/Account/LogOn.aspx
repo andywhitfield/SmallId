@@ -17,7 +17,6 @@
     <h2>Log On</h2>
     <p>
         Please enter your username and password.
-        <%--<%= Html.ActionLink("Register", "Register") %> if you don't have an account.--%>
     </p>
     <%= Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.") %>
 

@@ -5,9 +5,10 @@
         /// <summary>
         /// Validates the user.
         /// </summary>
-        /// <param name="userName">Name of the user.</param>
+        /// <param name="username">Name of the user.</param>
         /// <param name="password">The password.</param>
         /// <returns>Whether the given username and password is correct.</returns>
-        bool ValidateUser(string userName, string password);
+        bool ValidateUser(string username, string password);
+        bool RegisterNewUser(string username, string password, string email);
     }
 }

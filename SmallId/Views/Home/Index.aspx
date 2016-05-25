@@ -14,9 +14,9 @@
     }
     else {
 %> 
-        Welcome to SmallId - <%= Html.ActionLink("Log On", "LogOn", "Account") %>.
+        Welcome to SmallId - <%= Html.ActionLink("Log On", "LogOn", "Account") %>
+        or <%= Html.ActionLink("Register", "Register", "Account") %>.
 <%
     }
 %>
-
 </asp:Content>

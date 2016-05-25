@@ -1,4 +1,5 @@
 ﻿using SmallId.Code;
+using SmallId.Controllers.ViewModels;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Principal;
@@ -43,6 +44,23 @@ namespace SmallId.Controllers
             }
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Register(RegistrationViewModel registrationViewModel)
+        {
+            if (!CreateNewRegistration(registrationViewModel))
+            {
+                return View();
+            }
+
+            formsAuth.SignIn(registrationViewModel.Username, registrationViewModel.RememberMe);
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult LogOff()
         {
             formsAuth.SignOut();
@@ -73,6 +91,32 @@ namespace SmallId.Controllers
                 ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
             }
 
+            return ModelState.IsValid;
+        }
+
+        private bool CreateNewRegistration(RegistrationViewModel registrationViewModel)
+        {
+            if (string.IsNullOrWhiteSpace(registrationViewModel.Username))
+            {
+                ModelState.AddModelError("username", "You must provide a username.");
+            }
+            if (string.IsNullOrWhiteSpace(registrationViewModel.EmailAddress))
+            {
+                ModelState.AddModelError("emailaddress", "You must provide an email address.");
+            }
+            if (string.IsNullOrWhiteSpace(registrationViewModel.Password))
+            {
+                ModelState.AddModelError("password", "You must provide a password.");
+            }
+            if (registrationViewModel.Password != registrationViewModel.ConfirmPassword)
+            {
+                ModelState.AddModelError("confirmpassword", "The passwords do not match. Please make sure you've entered your password correctly.");
+            }
+
+            if (ModelState.IsValid && !membershipService.RegisterNewUser(registrationViewModel.Username, registrationViewModel.Password, registrationViewModel.EmailAddress))
+            {
+                ModelState.AddModelError("_FORM", "Could not register this new account. Please try an alternative username.");
+            }
             return ModelState.IsValid;
         }
     }
