@@ -1,6 +1,6 @@
 ﻿body
 {
-    background-color: #48AAFF;
+    background-color: #004A7F;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -137,7 +137,7 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    border-bottom: 1px #48AAFF solid;
+    border-bottom: 1px #004A7F solid;
     padding: 0 0 2px;
     position: relative;
     margin: 0;
